@@ -7,7 +7,7 @@ import emailRoutes from "./routes/emailRoutes";
 
 dotenv.config();
 const app = express();
-app.use(cors({ origin: "https://your-frontend-domain.com" }));
+app.use(cors({ origin: "http://localhost:5173" }));
 app.use(express.json());
 
 app.use("/api/visitor", visitorRoutes);
