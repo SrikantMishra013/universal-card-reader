@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef } from "react"; // Import useRef
-import sanitizeHtml from "sanitize-html";
 import { useParams } from "react-router-dom";
 import { motion, type Variants } from "framer-motion";
 import {
@@ -160,10 +159,6 @@ export default function VisitorDetailsPage() {
       setLoading(false);
     }
   };
-
-  const safeHtml = sanitizeHtml(visitor?.body ?? "", {
-    allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
-  });
 
   const handleEnrich = async () => {
     if (!visitor?._id) return;
@@ -546,7 +541,7 @@ export default function VisitorDetailsPage() {
           {/* Body */}
           <div className="relative">
             <div className="peer w-full border border-gray-300 rounded-lg px-3 pt-6 pb-2  focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-500 transition resize-none placeholder-transparent min-h-[150px]">
-              <div dangerouslySetInnerHTML={{ __html: safeHtml }} />
+              <div dangerouslySetInnerHTML={{ __html: visitor?.body || "" }} />
             </div>
             <label
               htmlFor="body"
