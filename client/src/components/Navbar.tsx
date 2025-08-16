@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm backdrop-blur bg-opacity-80">

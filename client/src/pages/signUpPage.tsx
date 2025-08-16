@@ -1,6 +1,6 @@
-import { useState, type SyntheticEvent } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Mail, Lock, User, Loader2, AtSign, Eye, EyeOff } from "lucide-react";
+import { User, Loader2, AtSign, Eye, EyeOff } from "lucide-react";
 import Layout from "@/components/Layout";
 
 export default function SignUpPage() {
@@ -55,28 +55,28 @@ export default function SignUpPage() {
     }
   };
 
-  const handleGoogleSignUp = async () => {
-    setLoading(true);
-    setError("");
+  // const handleGoogleSignUp = async () => {
+  //   setLoading(true);
+  //   setError("");
 
-    try {
-      // Simulate Google API login
-      // In a real application, you would integrate Google Sign-In SDK here:
-      // 1. Load Google Platform Library: <script src="https://apis.google.com/js/platform.js" async defer></script>
-      // 2. Initialize gapi.auth2.init() with your client ID.
-      // 3. Trigger GoogleAuth.signIn().
-      await new Promise((resolve) => setTimeout(resolve, 1500)); // Simulate network delay
+  //   try {
+  //     // Simulate Google API login
+  //     // In a real application, you would integrate Google Sign-In SDK here:
+  //     // 1. Load Google Platform Library: <script src="https://apis.google.com/js/platform.js" async defer></script>
+  //     // 2. Initialize gapi.auth2.init() with your client ID.
+  //     // 3. Trigger GoogleAuth.signIn().
+  //     await new Promise((resolve) => setTimeout(resolve, 1500)); // Simulate network delay
 
-      console.log("Google Sign Up successful!");
-      // Redirect to dashboard or a success page
-      navigate("/dashboard");
-    } catch (err) {
-      console.error("Google Sign Up error:", err);
-      setError("Failed to sign up with Google. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
+  //     console.log("Google Sign Up successful!");
+  //     // Redirect to dashboard or a success page
+  //     navigate("/dashboard");
+  //   } catch (err) {
+  //     console.error("Google Sign Up error:", err);
+  //     setError("Failed to sign up with Google. Please try again.");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   return (
     <Layout>

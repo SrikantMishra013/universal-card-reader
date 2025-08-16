@@ -147,7 +147,7 @@ export default function VisitorDetailsPage() {
   const fetchVisitor = async (visitorId: string) => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/visitor/${visitorId}`
+        `${import.meta.env.VITE_API_URL}/api/visitor/${visitorId}`
       );
       console.log(res.data);
 
@@ -168,7 +168,7 @@ export default function VisitorDetailsPage() {
 
     try {
       const res: AxiosResponse<AISummary> = await axios.post(
-        `http://localhost:5000/api/visitor/${visitor._id}/enrich`
+        `${import.meta.env.VITE_API_URL}/api/visitor/${visitor._id}/enrich`
       );
 
       const { summary, keyPoints, actionItems, sentiment } = res.data;
@@ -235,7 +235,7 @@ export default function VisitorDetailsPage() {
 
       // Send FormData with axios.post
       await axios.post(
-        `http://localhost:5000/api/visitor/${visitor._id}/email`,
+        `${import.meta.env.VITE_API_URL}/api/visitor/${visitor._id}/email`,
         formData,
         {
           headers: {

@@ -176,7 +176,7 @@ const DashboardPage = () => {
                     `${name}: ${(percent! * 100).toFixed(0)}%`
                   }
                 >
-                  {leadSourceData.map((entry, index) => (
+                  {leadSourceData.map((_entry, index) => (
                     <Cell
                       key={`cell-${index}`}
                       fill={COLORS[index % COLORS.length]}

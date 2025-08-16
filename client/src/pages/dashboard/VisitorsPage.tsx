@@ -70,7 +70,9 @@ export default function VisitorListPage() {
     try {
       setLoading(true);
       setError("");
-      const res = await axios.get("http://localhost:5000/api/visitor");
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/visitor`
+      );
       setVisitors(res.data as Visitor[]);
     } catch (err) {
       console.error(err);

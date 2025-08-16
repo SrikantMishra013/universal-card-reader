@@ -468,7 +468,7 @@ If a piece of information is missing or not found on the cardd, use a realistic 
       }
 
       const res = await axios.post<{ _id: string }>(
-        "http://localhost:5000/api/visitor",
+        `${import.meta.env.VITE_API_URL}/api/visitor`,
 
         data,
 

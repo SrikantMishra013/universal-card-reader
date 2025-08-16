@@ -175,7 +175,7 @@ const ScanPage = () => {
 
   useEffect(() => {
     // Start camera stream when component mounts or resets
-    let localStream: MediaStream;
+    // let localStream: MediaStream;
     const startCamera = async () => {
       try {
         const newStream = await navigator.mediaDevices.getUserMedia({
@@ -185,7 +185,7 @@ const ScanPage = () => {
           videoRef.current.srcObject = newStream;
         }
         setStream(newStream);
-        localStream = newStream;
+        // localStream = newStream;
       } catch (err) {
         console.error("Error accessing camera:", err);
         setError("Could not access the camera. Please grant permissions.");
@@ -407,9 +407,13 @@ const ScanPage = () => {
       if (audioTranscript) data.append("transcript", audioTranscript);
       if (audioBlob) data.append("audio", audioBlob, "recording.webm");
 
-      const res = await axios.post(`http://localhost:5000/api/visitor`, data, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/visitor`,
+        data,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
       navigate(`/visitor/${res.data._id}`);
     } catch (err) {
       console.error("Backend Error:", err);
