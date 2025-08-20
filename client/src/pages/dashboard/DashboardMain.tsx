@@ -35,6 +35,15 @@ const leadSourceData = [
 ];
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
+type KPIColor = "purple" | "green" | "yellow" | "red";
+
+const colorClasses: Record<KPIColor, { border: string; text: string }> = {
+  purple: { border: "border-purple-500", text: "text-purple-600" },
+  green: { border: "border-green-500", text: "text-green-600" },
+  yellow: { border: "border-yellow-500", text: "text-yellow-600" },
+  red: { border: "border-red-500", text: "text-red-600" },
+};
+
 const DashboardPage = () => {
   return (
     <DashboardLayout activeLink="home">
@@ -44,7 +53,7 @@ const DashboardPage = () => {
           <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 tracking-tight">
             Hello, Exhibitor!
           </h1>
-          <div className="flex items-center gap-4">
+          {/* <div className="flex items-center gap-4">
             <span className="text-sm font-medium text-gray-600 hidden md:block">
               John Doe
             </span>
@@ -53,7 +62,7 @@ const DashboardPage = () => {
               alt="User Avatar"
               className="w-12 h-12 rounded-full border-2 border-blue-500 shadow-sm"
             />
-          </div>
+          </div> */}
         </div>
 
         {/* Quick Actions and Stats */}
@@ -87,30 +96,32 @@ const DashboardPage = () => {
                 title: "Total Visitors Scanned",
                 value: 247,
                 icon: <User className="text-purple-500 w-8 h-8" />,
-                color: "purple",
+                color: "purple" as KPIColor,
               },
               {
                 title: "Follow-ups Completed",
                 value: 189,
                 icon: <CheckCircle className="text-green-500 w-8 h-8" />,
-                color: "green",
+                color: "green" as KPIColor,
               },
               {
                 title: "Leads This Week",
                 value: 72,
                 icon: <TrendingUp className="text-yellow-500 w-8 h-8" />,
-                color: "yellow",
+                color: "yellow" as KPIColor,
               },
               {
                 title: "Pending Follow-ups",
                 value: 58,
                 icon: <Mail className="text-red-500 w-8 h-8" />,
-                color: "red",
+                color: "red" as KPIColor,
               },
             ].map((kpi, idx) => (
               <div
                 key={idx}
-                className={`bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all border-l-4 border-${kpi.color}-500`}
+                className={`bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all border-l-4 ${
+                  colorClasses[kpi.color].border
+                }`}
               >
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-lg font-medium text-gray-600">
@@ -118,7 +129,11 @@ const DashboardPage = () => {
                   </h3>
                   {kpi.icon}
                 </div>
-                <p className={`text-4xl font-extrabold text-${kpi.color}-600`}>
+                <p
+                  className={`text-4xl font-extrabold ${
+                    colorClasses[kpi.color].text
+                  }`}
+                >
                   <CountUp end={kpi.value} duration={1.5} separator="," />
                 </p>
               </div>

@@ -9,11 +9,18 @@ import {
   ScanLine,
   ChevronLeft,
   ChevronRight,
+  X,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-const Sidebar = ({ activeLink }: { activeLink: string }) => {
+const Sidebar = ({
+  activeLink,
+  isMobileOpen,
+}: {
+  activeLink: string;
+  isMobileOpen: boolean;
+}) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const toggleSidebar = () => {
@@ -39,7 +46,9 @@ const Sidebar = ({ activeLink }: { activeLink: string }) => {
     <aside
       className={`min-h-screen flex flex-col bg-gray-900 text-gray-400 shadow-xl transition-all duration-300 ${
         isCollapsed ? "w-20" : "w-64"
-      } hidden md:flex`}
+      } ${
+        isMobileOpen ? "fixed inset-y-0 left-0 z-50 flex" : "hidden"
+      } md:flex`}
     >
       {/* Sidebar Header */}
       <div className="p-4 text-white flex items-center justify-between border-b border-gray-700">
@@ -61,7 +70,9 @@ const Sidebar = ({ activeLink }: { activeLink: string }) => {
           onClick={toggleSidebar}
           className="text-gray-400 hover:text-white transition-colors"
         >
-          {isCollapsed ? (
+          {isMobileOpen ? (
+            <X className="w-6 h-6" />
+          ) : isCollapsed ? (
             <ChevronRight className="w-6 h-6" />
           ) : (
             <ChevronLeft className="w-6 h-6" />
